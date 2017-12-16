@@ -7,6 +7,19 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Camera } from '@ionic-native/camera';
+import { CameraMock } from './camera.mock';
+
+/* import { AngularFireModule } from 'angularfire2';
+// for AngularFireDatabase
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
+// for AngularFireAuth
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth'; */
+
+import { UploadServiceProvider } from '../providers/upload-service/upload-service';
+import { Firebas_Config } from './confic_firebase';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +28,11 @@ import { Camera } from '@ionic-native/camera';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpClientModule,
+    IonicModule.forRoot(MyApp)/* ,
+    AngularFireModule.initializeApp(Firebas_Config),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule, */
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -26,7 +43,10 @@ import { Camera } from '@ionic-native/camera';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Camera
+    //{provide: Camera ,useClass :CameraMock}
+    Camera,
+    UploadServiceProvider
+
   ]
 })
 export class AppModule {}
